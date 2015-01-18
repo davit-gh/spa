@@ -1,0 +1,41 @@
+{% extends "pages/page.html" %}
+
+{% load i18n mezzanine_tags staticfiles %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+	<script>
+	$(function(){
+      //  Initialize Backgound Stretcher
+      $('BODY').bgStretcher({
+        images: ['{{ MEDIA_URL }}{{ page.richtextpage.image }}'], 
+		imageWidth: 1600, 
+		imageHeight: 964, 
+		resizeProportionally:true	
+       });	
+    });
+    </script>
+{% endblock %}
+
+
+ {% block about %}
+ 
+    <section id="content">
+	    <div class="main-block policy">
+	    	<div class="main">
+		      {% editable page.richtextpage.content page.richtextpage.title %}
+		        {{ page.richtextpage.content|richtext_filters|safe }}
+		      {% endeditable %}
+    		</div>
+    	</div>
+    </section>
+
+{% endblock %}
+
+{% block feature %}
+<hr>
+  
+{% endblock %}
+

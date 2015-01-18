@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags staticfiles %}
+
+{% block meta_title %}{{ title }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block body_id %}account{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+    $(document).ready(function() {  
+      //  Initialize Backgound Stretcher
+      $('BODY').bgStretcher({
+        images: ['{{ MEDIA_URL }}{{ page.form.bgimagee }}'], 
+        imageWidth: 1600, 
+        imageHeight: 964, 
+        resizeProportionally:true   
+       });      
+    }); 
+    
+    </script>
+
+{% endblock %}
+
+{% block about %}
+    <section id="content">  
+        <div class="main-block">
+        <div class="container_12">
+              <div class="wrapper border-vert">
+            <article class="grid_5">
+                  <h3>Our Address</h3>
+                  <div class="map">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6096.726491536635!2d44.50840772807925!3d40.178728877843376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406abcfc10ad4b9b%3A0xecfee7b8a14f6252!2s28+Yeznik+Koghbatsi+St%2C+Yerevan%2C+Armenia!5e0!3m2!1sen!2s!4v1421601558339" width="400" height="300" frameborder="0" style="border:0"></iframe>
+                </div>
+                 
+                 <dl class="address">
+                    <dt>CEBU Relaxation Center.<br>
+                    28 Yeznik Koghbatsu Street,<br> 
+                    002, Yerevan, Armenia</dt>
+                    
+                    <dd> <span>Telephone:</span> (010) 502959 </dd>
+                              
+                  </dl>
+            
+             </article>
+            <article class="grid_5 prefix_2">
+                    <h3>Contact Us</h3>
+                    {% if request.GET.sent %}
+                            {{ page.form.response|richtext_filters|safe }}
+                    {% else %}
+                        <form id="contact-form" method="post">
+                            {% csrf_token %}
+                                    {% for hidden in form.hidden_fields %}
+                                        {{hidden}}
+                                    {% endfor %}
+                              <fieldset>
+                                {% for vis in form.visible_fields %}
+                                    <div>
+                                      {{ vis.label_tag }}
+                                      {% for err in vis.errors %}<span style="color:red">{{ err }}</span>{% endfor %}
+                                        {{ vis }}
+                                    </div>
+                                {% endfor %}
+                                
+                                <div class="buttons-wrapper"><button class="button">Send</button></div>
+                              </fieldset>
+                        </form>
+                    {% endif %}
+            </article>
+          </div>
+         </div>
+      </div>  
+    </section>   
+
+{% endblock %}
+
+

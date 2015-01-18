@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+{% load pages_tags mezzanine_tags i18n future staticfiles %}
+
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+<link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+
+{% ifinstalled mezzanine.blog %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+{% endifinstalled %}
+
+{% compress css %}
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+
+{% block extra_css %}{% endblock %}
+{% endcompress %}
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-1.1.1.js' %}"></script>
+    <script src="{% static 'js/bgstretcher.js' %}"></script>
+    
+    {% block extra_js %}{% endblock %}
+
+
+<!--[if lt IE 9]>
+<script src="{% static "js/html5shiv.js" %}"></script>
+<script src="{% static "js/respond.min.js" %}"></script>
+<![endif]-->
+
+{% block extra_head %}{% endblock %}
+</head>
+
+<body id="{% block body_id %}{% endblock %}" class="{% block body_class %}homepage{% endblock %}">
+
+
+
+    <div class="extra-block1"> 
+          <!--==============================row-top=================================-->
+        <div class="row-top">
+            <div class="main">
+                <ul class="list-soc">
+                    <li><a href="#"><img alt="" src="{% static "images/soc-icon1.png" %}"></a></li>
+                    <li><a href="#"><img alt="" src="{% static "images/soc-icon2.png" %}"></a></li>
+                </ul>
+            </div>
+        </div>
+          
+          <!--==============================header=================================-->
+          
+        <header>
+            <div class="row-nav">
+                <div class="main">
+                    <h1 class="logo"><a href="index.html"><img alt="Eni Gma" src="{% static "images/logo_cebu.jpg" %}" width="150"></a></h1>
+                    <nav>
+                        {% page_menu "pages/menus/dropdown.html" %}
+                    </nav>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </header>
+        {% block about %}{% endblock %}
+        {% block gallery %}{% endblock %}
+    </div>
+
+<div class="block">
+    
+    {% block content %}
+
+    {% endblock content %}
+
+    <footer>
+        <div class="main aligncenter">
+            <div class="privacy">
+                Cebu Relaxation Center. &copy; 2015 <span>|</span>  <span>|</span> <strong>Website designed by <a href="#">Beautiful Sites Inc.</a></strong>
+            </div>
+        </div>
+    </footer>
+</div>
+    
+{% editable_loader %}
+</body>
+</html>

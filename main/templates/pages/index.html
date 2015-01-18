@@ -1,0 +1,55 @@
+{% extends "pages/page.html" %}
+
+{% load staticfiles mezzanine_tags i18n %}
+{% block body_id %}{% endblock %}
+
+
+{% block extra_css %}
+{{ block.super }}
+<!-- make the corners of select tag for sorting round and move it 
+upper to allign with its left div. cart/checkout block also moves up (panel class)-->
+
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(function(){
+          //  Initialize Backgound Stretcher
+          $('BODY').bgStretcher({
+            images: [{% for slide in page.homepage.slides.all %}"{{ MEDIA_URL }}{{ slide.image_back }}"{% if not forloop.last %},{% endif %} {% endfor %}], 
+            imageWidth: 1600, 
+            imageHeight: 964, 
+            resizeProportionally:true,
+                slideDirection: 'N',
+                slideShowSpeed: 1000,
+                transitionEffect: 'fade',
+                sequenceMode: 'normal',     
+                pagination: '#nav'
+        
+           });  
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="nav-buttons">
+        <div id="nav">&nbsp;</div>
+    </div>
+    <div class="row-1">
+        <div class="container_12">
+            <div class="wrapper">
+                {% for item in items %}
+                    <article class="grid_4">
+                        <figure class="box-1"><img src="{{MEDIA_URL}}{{ item.featured_image }}" alt="" />
+                            <figcaption>{% trans item.title %} <a href="more.html"></a></figcaption>
+                        </figure>
+                    </article>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+
+{% endblock content%}
+
+

@@ -1,0 +1,83 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/demo.css' %}" type="text/css" media="all">
+<link rel="stylesheet" href="{% static 'css/fonts.css' %}" type="text/css" media="all">
+{% endblock extra_css %}
+
+{% block body_class %}{% endblock %}
+
+{% block gallery %}
+
+<div id="main">
+  <div class="inside">
+    <h2>Gallery Demo</h2>
+
+    {% with page.gallery.images.all as images %}
+        <div id="slide">
+            <div class="gallery">
+                <ul class="items">
+                    {% for image in images %}
+                        <li><img src="{{ MEDIA_URL }}{% thumbnail image.file 900 500 %}" alt="" /><div class="banner"><span>{{ image.description }} </span></div></li>
+                    {% endfor %}
+                    
+                </ul>
+            </div>
+            <a href="#" class="prev">&lt;</a> <a href="#" class="play"><em>stop</em><span>play</span></a> <a href="#" class="next">&gt;</a>
+        </div>
+        <div class="pag">
+            <div class="img-pags">
+              <ul>
+                {% for image in images %}
+                    <li><a href="#"><span><img src="{{ MEDIA_URL }}{% thumbnail image.file 70 70 %}" alt="" /></span></a></li>
+                {% endfor %}
+              </ul>  
+            </div>                              
+            <a href="#" class="button button1" data-type="prevPage"><</a>
+            <a href="#" class="button button2" data-type="nextPage">></a>
+        </div>
+
+    {% endwith %}
+    </div></div>
+{% endblock %}
+
+{% block extra_js %}
+
+<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/uCarousel.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tms-0.4.1.js' %}"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        
+            jQuery('.gallery')._TMS({
+            show:0,
+            pauseOnHover:true,
+            prevBu:'.prev',
+            nextBu:'.next',
+            playBu:'.play',
+            duration:10000,
+            preset:'zoomer',
+            pagination:$('.img-pags').uCarousel({show:10,shift:0}),
+            pagNums:false,
+            slideshow:7000,
+            numStatus:true,
+            banners:'fromRight',// fromLeft, fromRight, fromTop, fromBottom
+            waitBannerAnimation:false,
+            progressBar:'<div class="progbar"></div>'
+            })  
+        
+        });
+
+    $(document).ready(function() {  
+      //  Initialize Backgound Stretcher
+      $('BODY').bgStretcher({
+        images: ['{{ MEDIA_URL }}{{ page.gallery.bgimage }}'], 
+        imageWidth: 1600, 
+        imageHeight: 964, 
+        resizeProportionally:true   
+       }); 
+    });
+</script>
+{% endblock %}

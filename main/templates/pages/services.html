@@ -1,0 +1,45 @@
+{% extends "pages/page.html" %}
+
+{% load i18n mezzanine_tags staticfiles %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block extra_js %}
+	<script>
+	$(function(){
+      //  Initialize Backgound Stretcher
+      $('BODY').bgStretcher({
+        images: ['{{ MEDIA_URL }}{{ page.richtextpage.image }}'], 
+		imageWidth: 1600, 
+		imageHeight: 964, 
+		resizeProportionally:true	
+       });	
+    });
+    </script>
+{% endblock %}
+
+
+ {% block about %}
+ 	<section id="content">  
+  
+	    <div class="main-block">
+		    <div class="container_12">
+		        <div class="wrapper">
+		        	{% for portitem in portitems %}
+				        <article class="grid_4">             
+				            <figure class="img-rounded img-indent"><img src="{{ MEDIA_URL }}{{ portitem.featured_image}}" alt="" /> </figure>
+				            <h4>{{ portitem.title }}</h4>
+				            {{ portitem.portfolioitem.content|richtext_filters|safe }}
+				                        
+				            <a href="{% url 'page' 'more' %}" class="button">More</a>
+				        </article>
+		        	{% endfor %}
+			   	</div>
+		    </div>
+	    </div>
+	<section>  
+    
+{% endblock %}
+
+
