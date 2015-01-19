@@ -5,6 +5,7 @@
 {% block extra_css %}
 {% endblock %}
 
+
 {% block extra_js %}
 	<script>
 	$(function(){
@@ -28,16 +29,16 @@
 		        <div class="wrapper border-vert">
 			        <article class="grid_5">
 			              <h3>Welcome</h3>
-			              <figure class="img-rounded"><img src="images/page2-img1.jpg" alt="" /> </figure>
+			              <figure class="img-rounded"><img src="{% static 'images/page2-img1.jpg' %}" alt="" /> </figure>
 			              <h4>Koleacene anritma hasesera deyulety. Cumrsocis natoqu eagnis distmtese duluese feugiata lecenas </h4>
-			              <p><a href="http://blog.templatemonster.com/free-website-templates/ " class="link-1" rel="nofollow">Click here</a> for more info about this free website template created by TemplateMonster.com</p>
+			              
 			              <p>quiacum socis nateagnis distese dulmue seugia lecenas str cies phase ledat enaec sit ame  gfdulyry f easer.  Fusce suscipit varius mi cum sociis natoque penati bus et magnis dis parturient montes nascetur ridicu . lorem. Maecenas tristique orci ac sem.  Fusce suscipit varius mi cum sociis natoque penati bus et magnis dishjlop. </p>
-			              <a href="#" class="button">More</a> </article>
+			              <a href="{% url 'page' 'more' %}" class="button">More</a> </article>
 			        <article class="grid_3 prefix_2">
 		            <h3>Our Services</h3>
 		            <ul class="list-services">
 			            <li>
-			                <figure class="img-rounded1"><img src="images/page2-img2.jpg" alt="" /> </figure>
+			                <figure class="img-rounded1"><img src="{% static 'images/page2-img2.jpg' %}" alt="" /> </figure>
 			                <h4><a href="#">Skin Care Treatments</a></h4>
 			                <ul class="list">
 				                <li><a href="#">Glycolic Peel</a></li>
@@ -46,7 +47,7 @@
 				            </ul>
 			            </li>
 			            <li>
-			                <figure class="img-rounded1"><img src="images/page2-img3.jpg" alt="" /> </figure>
+			                <figure class="img-rounded1"><img src="{% static 'images/page2-img3.jpg' %}" alt="" /> </figure>
 			                <h4><a href="#">Nail Services</a></h4>
 			                <ul class="list">
 				                <li><a href="#">Manicures</a></li>
@@ -55,7 +56,7 @@
 				            </ul>
 			            </li>
 			        </ul>
-		        <a href="#" class="button">More</a> </article>
+		        <a href="{% url 'page' 'more' %}" class="button">More</a> </article>
 		      	</div>
 	    	</div>
 	    </div>  
