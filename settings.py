@@ -377,4 +377,4 @@ except ImportError:
 else:
     set_dynamic_settings(globals())
 
-SITE_TITLE = "Cebu Relax"
+SITE_TITLE = "Eliza Skincare"

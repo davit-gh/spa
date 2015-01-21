@@ -41,7 +41,7 @@ upper to allign with its left div. cart/checkout block also moves up (panel clas
                 {% for item in items %}
                     <article class="grid_4">
                         <figure class="box-1"><img src="{{MEDIA_URL}}{{ item.featured_image }}" alt="" />
-                            <figcaption>{% trans item.title %} <a href="more.html"></a></figcaption>
+                            <figcaption>{% trans item.title %} <a href="{% url 'page' 'more' %}"></a></figcaption>
                         </figure>
                     </article>
                 {% endfor %}
